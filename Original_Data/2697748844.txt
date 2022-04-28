@@ -1,0 +1,6 @@
+Exams mean: 56.8
+Labs mean: 79.6
+Quizzes mean: 70.3
+Reading activities mean: 77.4
+Score: 69.0%
+Letter grade: D

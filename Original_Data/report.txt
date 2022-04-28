@@ -1,0 +1,6 @@
+Total number of students: 174
+Minimum score: 39.6
+Maximum score: 96.6
+Median score: 84.3
+Mean score: 82.1
+Standard deviation: 10.7
