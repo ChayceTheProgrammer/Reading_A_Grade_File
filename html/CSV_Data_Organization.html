@@ -1,0 +1,1736 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>CSV_Data_Organization API documentation</title>
+<meta name="description" content="File:
+CSV_Data_Organization.py
+Author:
+Chayce Leonard (231009015)
+Date:
+05/09/2022
+Email:
+chayce4school@tamu.edu" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>CSV_Data_Organization</code></h1>
+</header>
+<section id="section-intro">
+<p>File:
+CSV_Data_Organization.py
+Author:
+Chayce Leonard (231009015)
+Date:
+05/09/2022
+Email:
+chayce4school@tamu.edu</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+File:    CSV_Data_Organization.py
+Author:  Chayce Leonard (231009015)
+Date:    05/09/2022
+Email:   chayce4school@tamu.edu
+&#34;&#34;&#34;
+
+import csv
+import os
+import matplotlib.pyplot as plt
+import statistics as stat
+import math
+
+&#34;&#34;&#34;
+Function which will allow input from the user
+&#34;&#34;&#34;
+def select_option():
+    &#34;&#34;&#34;
+    Function that asks user for input of what option from the menu the user wants
+    &#34;&#34;&#34;
+    option = -1 # Starts the users choice as -1 as a &#34;null-choice&#34; which means they have not chosen a choice yet
+    library_of_grades = {}  # dictionary that will hold every student and their grades as a list
+    while option != 6:
+        print_menu() # prints menu
+        option = int(input(&#34;Select from the options above: &#34;)) # asks user for option
+        if   option == 1:
+            # option for reading grades.csv and obtaining all data for calculations
+            all_file_data = get_file_data(&#34;Original_Data/grades.csv&#34;)[0]
+
+            for line in all_file_data[0:]:
+                uin = line[0]                        # UIN is the first element of every row and will the key for the dictionary
+
+                grades_as_list_of_strings = line[1:] # Grades come as strings and are every element after UIN
+                grades = [float(grade) for grade in grades_as_list_of_strings] # List comprehension so every number string is converted to a value that allows math to be done to it                     # Grades will be the value for the dictionary
+
+                student = {uin:grades}
+                library_of_grades.update(student)
+            print(&#34;File: \&#34;grades.csv\&#34; has been read!&#34;)
+            print(&#34;&#34;)
+        elif option == 2:
+            if len(library_of_grades) == 0:
+                # Case for if file has not been read yet
+                print(&#34;No file read\n&#34;)
+                pass
+            else:
+                generate_student_report_file(library_of_grades)
+                print(&#34;&#34;)
+                pass
+        elif option == 3:
+            if len(library_of_grades) == 0:
+                # Case for if grades.csv file has not been read yet
+                print(&#34;No file read\n&#34;)
+                pass
+            else:
+                generate_student_report_charts(library_of_grades)
+                print(&#34;&#34;)
+                pass
+        elif option == 4:
+            if len(library_of_grades) == 0:
+                # Case for if file has not been read yet
+                print(&#34;No file read\n&#34;)
+                pass
+            else:
+                generate_class_report(library_of_grades)
+                print(&#34;&#34;)
+                pass
+        elif option == 5:
+            if len(library_of_grades) == 0:
+                # Case for if file has not been read yet
+                print(&#34;No file read\n&#34;)
+                pass
+            else:
+                generate_report_charts_for_class(library_of_grades)
+                print(&#34;&#34;)
+                pass
+        elif option == 6:
+            # Case for if user wants to quit
+            print(&#34;&#34;)
+            break
+        else:
+            print(&#34;Unexpected Option Choice. Try Again\n&#34;)
+
+    print(&#34;You have exited the program!&#34;)
+
+&#34;&#34;&#34;
+Next Function which prints the menu
+&#34;&#34;&#34;
+def print_menu():
+    &#34;&#34;&#34;
+    Function that simply prints the menu
+    &#34;&#34;&#34;
+    print(&#34;&#34;&#34;*******************Main Menu*****************
+1. Read CSV file of grades
+2. Generate student report file
+3. Generate student report charts
+4. Generate class report file
+5. Generate class report charts
+6. Quit
+************************************************
+    &#34;&#34;&#34;)
+
+&#34;&#34;&#34;
+Function which reads the grades file and obtains the data into a information structure
+&#34;&#34;&#34;
+def get_file_data(file_name):
+    &#34;&#34;&#34;
+
+    Function that opens the file titles grades.csv
+
+    Parameter1: file_name is the name of the file that contains the data
+    &#34;&#34;&#34;
+    grades_file = open(file_name)
+
+    # cvs.reader() reads the file line by line
+    reading_file = csv.reader(grades_file)
+
+    header_line = next(reading_file)
+
+    every_row = []
+    for row in reading_file:
+        # Collects all data from every row, except first, in the file into a list and appends that list to the entire data list of every_row
+        every_row.append(row)
+
+    # .close() method closes the file
+    grades_file.close()
+    return every_row, header_line
+
+&#34;&#34;&#34;
+The Next 8 functions are used for option 2 of the select_option() function which create a file of a 
+single student&#39;s grades
+&#34;&#34;&#34;
+def generate_student_report_file(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Generates the file which the user is prompted for an uin and writes to a new file titles the uin.txt
+
+    Parameter1: Dictionary of Keys (UINs) and Values (Grades)
+    &#34;&#34;&#34;
+    what_uin = input(&#34;Enter the specified UIN for the report: &#34;)
+    if what_uin not in dict_of_grades.keys():
+        # case for if uin entered is not a key in the dictionary specified, then a message pops up and a re-prompt occurs
+        print(&#34;Invalid UIN&#34;)
+        generate_student_report_file(dict_of_grades)
+    else:
+        # Branch that actually calculates the averages and writes to a file
+        lab_average     = calculate_everything_single_student(what_uin, dict_of_grades)[0]
+        exam_average    = calculate_everything_single_student(what_uin, dict_of_grades)[1]
+        quiz_average    = calculate_everything_single_student(what_uin, dict_of_grades)[2]
+        reading_average = calculate_everything_single_student(what_uin, dict_of_grades)[3]
+        weighted_score  = calculate_everything_single_student(what_uin, dict_of_grades)[4]
+        letter          = letter_grade(weighted_score)
+
+        student_report_file = open(f&#34;{what_uin}.txt&#34;, &#34;w&#34;) # creates empty file titled the UIN specified.txt, in the mode of writing
+        print(f&#34;File: \&#34;{what_uin}.txt\&#34; has been created!&#34;)
+        student_report_file.write(f&#34;Exams mean: {exam_average}\n&#34;
+                                  f&#34;Labs mean: {lab_average}\n&#34;
+                                  f&#34;Quizzes mean: {quiz_average}\n&#34;
+                                  f&#34;Reading activities mean: {reading_average}\n&#34;
+                                  f&#34;Score: {weighted_score}%\n&#34;
+                                  f&#34;Letter grade: {letter}&#34;)
+        student_report_file.close()
+        print(f&#34;File: \&#34;{what_uin}.txt\&#34; has been updated!&#34;)
+        return lab_average, exam_average, quiz_average, reading_average, weighted_score
+
+def calc_labs(uin, dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which will calculate the average of the labs
+
+    Parameter1: uin is the specified UIN which where the specified students grades are held
+
+    Parameter2: dict_of_grades is the dictionary that holds every student&#39;s grades
+    &#34;&#34;&#34;
+    grades = dict_of_grades[uin]
+    labs_scores = grades[0:6]
+    lab_mean = sum(labs_scores) / len(labs_scores)
+    return lab_mean
+
+def calc_exams(uin, dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that will calculate the average of the exams
+
+    Parameter1: uin is the specified UIN which where the specified students grades are held
+
+    Parameter2: dict_of_grades is the dictionary that holds every student&#39;s grades
+    &#34;&#34;&#34;
+    grades = dict_of_grades[uin]
+    exam_scores = grades[18:21]
+    exam_mean = sum(exam_scores) / len(exam_scores)
+    return exam_mean
+
+def calc_quizzes(uin, dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that calculates the average of the quizzes
+
+    Parameter1: uin is the specified UIN which where the specified students grades are held in dict_of_grades
+
+    Parameter2: dict_of_grades is the dictionary that holds every student&#39;s grades
+
+    &#34;&#34;&#34;
+    grades = dict_of_grades[uin]
+    quiz_scores = grades[6:12]
+    quiz_mean = sum(quiz_scores) / len(quiz_scores)
+    return quiz_mean
+
+def calc_readings(uin, dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that calculates the average of the readings
+
+    Parameter1: uin is the specified UIN which where the specified students grades are held in dict_of_grades
+
+    Parameter2: dict_of_grades is the dictionary that holds every student&#39;s grades
+
+    &#34;&#34;&#34;
+    grades = dict_of_grades[uin]
+    reading_score = grades[12:18]
+    reading_mean = sum(reading_score) / len(reading_score)
+    return reading_mean
+
+def calc_score(l_ave, e_ave, q_ave, r_ave, proj):
+    &#34;&#34;&#34;
+
+    Function that calculates the weighted score
+
+    Parameter1: l_ave is the average of the labs
+
+    Parameter2: e_ave is the average of the exams
+
+    Parameter3: q_ave is the average of the quiz&#39;s
+
+    Parameter4: r_ave is the average of the reading activities
+
+    Parameter5: proj is the project grade (not an average as there is only one project)
+
+    &#34;&#34;&#34;
+    total_score_list = []
+
+    weighed_labs    = l_ave * .25
+    total_score_list.append(weighed_labs)
+
+    weighed_quizzes = q_ave * .10
+    total_score_list.append(weighed_quizzes)
+
+    weighed_exams   = e_ave * .45
+    total_score_list.append(weighed_exams)
+
+    weighed_reading = r_ave * .10
+    total_score_list.append(weighed_reading)
+
+    weighed_project = proj * .10
+    total_score_list.append(weighed_project)
+
+    total_score = sum(total_score_list)
+    return total_score
+
+def letter_grade(weighted_score):
+    &#34;&#34;&#34;
+
+    Function which calculates letter grades by the weighted Grade
+
+    Parameter1: weighted_score is the average score of a single student
+
+    &#34;&#34;&#34;
+    if weighted_score &gt;= 90:
+        grade_letter = &#39;A&#39;
+    elif 90 &gt; weighted_score &gt;= 80:
+        grade_letter = &#39;B&#39;
+    elif 80 &gt; weighted_score &gt;= 70:
+        grade_letter = &#39;C&#39;
+    elif 70 &gt; weighted_score &gt;= 60:
+        grade_letter = &#39;D&#39;
+    else:
+        grade_letter = &#39;F&#39;
+    return grade_letter
+
+def calculate_everything_single_student(uin, dict_of_grades):
+    &#34;&#34;&#34;
+    Function will calculate the average of all assignment types in a single function
+
+    Parameter1: uin is where the specified student uin will go
+
+    Parameter2: dict_of_grades is what holds every student&#39;s grades attached by UIN
+
+    &#34;&#34;&#34;
+    lab_average = round(calc_labs(uin, dict_of_grades), 1)
+    exam_average = round(calc_exams(uin, dict_of_grades), 1)
+    quiz_average = round(calc_quizzes(uin, dict_of_grades), 1)
+    reading_average = round(calc_readings(uin, dict_of_grades), 1)
+    project = dict_of_grades[uin][-1]
+    weighted_score = round(calc_score(lab_average, exam_average, quiz_average, reading_average, project), 1)
+    letter = letter_grade(weighted_score)
+    return lab_average, exam_average, quiz_average, reading_average, weighted_score, letter
+
+&#34;&#34;&#34;
+The Next 6 functions are for option 3 of the select_option() function which creates a directory named their UIN to 
+store the 4 bar charts of the different assignment types for a single student
+&#34;&#34;&#34;
+def generate_student_report_charts(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that generates both the Bar and Pie Chart for the Letter Grade Distribution
+
+    Parameter1: dict_of_grades is what holds all student&#39;s grades attached by UIN
+
+    &#34;&#34;&#34;
+    what_uin = input(&#34;Enter the Specified UIN for the chart report: &#34;)
+    if what_uin not in dict_of_grades.keys():
+        # Branch for the case where uin entered is not in the grades file
+        print(&#34;Invalid UIN!&#34;)
+        generate_student_report_charts(dict_of_grades)
+    else:
+        # Branch that actually creates the bar charts for the individual
+        path = create_directory(what_uin)
+
+        header_line = (get_file_data(&#34;Original_Data/grades.csv&#34;))[1]
+        student_grades = dict_of_grades[what_uin]
+
+        generate_labs_bar_chart(student_grades, header_line, what_uin, path)
+        generate_exams_bar_chart(student_grades, header_line, what_uin, path)
+        generate_readings_bar_chart(student_grades, header_line, what_uin, path)
+        generate_quiz_bar_chart(student_grades, header_line, what_uin, path)
+
+def create_directory(directory_name):
+    &#34;&#34;&#34;
+
+    Function Creates a directory with the name provided which will hold Charts
+
+    Parameter1: directory_name is the desired directory name
+
+    &#34;&#34;&#34;
+    new_directory = f&#34;/{directory_name}&#34;
+    &#39;&#39;&#39;parent_directory = &#34;C:/Users/Public/PycharmProjects/Project[CSCE110]&#34;&#39;&#39;&#39;
+    parent_directory = &#34;.&#34;
+    path = parent_directory + new_directory
+    os.mkdir(path, mode=0o666)
+    print(f&#34;Directory named \&#34;{directory_name}\&#34; at path: \&#34;{path}\&#34; was created!\n&#34;
+          f&#34;Check Your FILES!&#34;)
+    return path
+
+def generate_labs_bar_chart(student_grades, header_line, uin, save_path):
+    &#34;&#34;&#34;
+
+    Function that creates the bar chart for labs
+
+    Parameter1: student_grades is the section of the dictionary that has the specified student&#39;s grades
+
+    Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what
+
+    Parameter3: uin is the current student&#39;s UIN
+
+    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+
+    &#34;&#34;&#34;
+    lab_scores = student_grades[0:6]
+    each_lab = header_line[1:7]
+    plt.figure(1)
+    plt.bar(each_lab, lab_scores, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Lab Assignments&#34;)
+    plt.ylabel(&#34;Score&#34;)
+    plt.title(f&#34;Grades for Lab Assignments for the student with UIN: {uin}&#34;)
+    plt.savefig(save_path + f&#34;/{uin}_Lab_Bar_Chart.png&#34;)
+
+def generate_exams_bar_chart(student_grades, header_line, uin, save_path):
+    &#34;&#34;&#34;
+
+    Function that creates the bar chart for the exams
+
+    Parameter1: student_grades is the section of the dictionary that has the specified student&#39;s grades
+
+    Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what
+
+    Parameter3: uin is the current student&#39;s UIN
+
+    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+
+    &#34;&#34;&#34;
+    exam_scores = student_grades[18:21]
+    each_exam = header_line[19:22]
+    plt.figure(2)
+    plt.bar(each_exam, exam_scores, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Exam Number&#34;)
+    plt.ylabel(&#34;Score&#34;)
+    plt.title(f&#34;Grades for Exams for Student with UIN: {uin}&#34;)
+    plt.savefig(save_path + f&#34;/{uin}_Exam_Bar_Chart.png&#34;)
+
+def generate_readings_bar_chart(student_grades, header_line, uin, save_path):
+    &#34;&#34;&#34;
+
+    Function that creates the bar chart for reading activities
+
+    Parameter1: student_grades is the section of the dictionary that has the specified student&#39;s grades
+
+    Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what
+
+    Parameter3: uin is the current student&#39;s UIN
+
+    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+
+    &#34;&#34;&#34;
+    reading_scores = student_grades[12:18]
+    each_reading = header_line[13:19]
+    plt.figure(3)
+    plt.bar(each_reading, reading_scores, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Reading Assignment&#34;)
+    plt.ylabel(&#34;Score&#34;)
+    plt.title(f&#34;Grades for Reading Assignments for Student with UIN: {uin}&#34;)
+    plt.savefig(save_path + f&#34;/{uin}_Readings_Bar_Chart.png&#34;)
+
+def generate_quiz_bar_chart(student_grades, header_line, uin, save_path):
+    &#34;&#34;&#34;
+
+    Function that creates the bar chart for all the quiz&#39;s
+
+    Parameter1: student_grades is the section of the dictionary that has the specified student&#39;s grades
+
+    Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what
+
+    Parameter3: uin is the current student&#39;s UIN
+
+    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+
+    &#34;&#34;&#34;
+    quiz_scores = student_grades[6:12]
+    each_quiz = header_line[7:13]
+    plt.figure(4)
+    plt.bar(each_quiz, quiz_scores, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Quiz Number&#34;)
+    plt.ylabel(&#34;Score&#34;)
+    plt.title(f&#34;Grades for Quiz Assignments for Student with UIN: {uin}&#34;)
+    plt.savefig(save_path + f&#34;/{uin}_Quiz_Bar_Chart.png&#34;)
+
+&#34;&#34;&#34;
+These Next 7 Functions are specifically for option 4 of the select_option() function
+Some of these functions have functions that were used for option 2 of select_option() function
+&#34;&#34;&#34;
+def generate_class_report(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Option for instructor to get data about the entire class
+
+    Parameter1: Dictionary that holds every student&#39;s uin and grades
+
+    &#34;&#34;&#34;
+    total_students = len(list(dict_of_grades.keys()))
+    minimum_score  = lowest_class_score(dict_of_grades)
+    maximum_score  = highest_class_score(dict_of_grades)
+    median_score   = class_median_score(dict_of_grades)
+    average_score  = class_average_score(dict_of_grades)
+    standard_dev   = class_standard_dev(dict_of_grades)
+
+    class_report_file = open(f&#34;report.txt&#34;, &#34;w&#34;) # Creates empty file for the report
+    class_report_file.write(f&#34;Total number of students: {total_students}\n&#34;
+                            f&#34;Minimum score: {minimum_score}\n&#34;
+                            f&#34;Maximum score: {maximum_score}\n&#34;
+                            f&#34;Median score: {median_score}\n&#34;
+                            f&#34;Mean score: {average_score}\n&#34;
+                            f&#34;Standard deviation: {standard_dev}\n&#34;
+                            )
+    print(f&#34;Class Report Generated!&#34;)
+    print(f&#34;Check files for the report!&#34;)
+
+def find_all_student_scores(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which calculates every student&#39;s weighted score
+
+    Parameter1: Dictionary that holds all students UIN and respective grades
+
+    &#34;&#34;&#34;
+    scores = []
+    for key in dict_of_grades:
+        score = calculate_everything_single_student(key, dict_of_grades)[4]
+        scores.append(score)
+
+    return scores
+
+def lowest_class_score(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the lowest weighted score for the report of the class
+
+    Parameter1: Dictionary that holds all students uin and respective grades
+    &#34;&#34;&#34;
+    lowest_score = min(find_all_student_scores(dict_of_grades))
+    return lowest_score
+
+def highest_class_score(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the highest weighted score for the report of the class
+
+    Parameter1: Dictionary that holds all students uin and respective grades
+
+    &#34;&#34;&#34;
+    highest_score = max(find_all_student_scores(dict_of_grades))
+    return highest_score
+
+def normal_rounding(number, decimal_places):
+    &#34;&#34;&#34;
+
+    round() function always rounds to the nearest even number, this function will
+    allow you to round any number to a specified number of decimal places traditionally
+    instead of &#34;banker&#39;s rounding&#34; of rounding to the nearest even number
+
+    Parameter1: number The Number you want to round to
+
+    Parameter2: decimal_places How many decimal places you want to round
+
+    &#34;&#34;&#34;
+    exponent = number * 10 ** decimal_places
+    if abs(exponent) - abs(math.floor(exponent)) &lt; .5:
+        return math.floor(exponent) / 10 ** decimal_places
+    else:
+        return math.ceil(exponent) / 10 ** decimal_places
+
+def class_median_score(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that finds the median of all scores of the class
+
+    Parameter1: dictionary of grades that holds UIN and grades
+
+    &#34;&#34;&#34;
+    median = normal_rounding(stat.median(find_all_student_scores(dict_of_grades)), 1)
+    return median
+
+def class_average_score(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the average of the class
+
+    parameter1: Dictionary of UINs and respective grades
+
+    &#34;&#34;&#34;
+    class_average = round((sum(find_all_student_scores(dict_of_grades)) / len(find_all_student_scores(dict_of_grades))), 1)
+    return class_average
+
+def class_standard_dev(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that finds the standard deviation of the entire class&#39;s weighed scores
+
+    Parameter1: Dictionary of {UINs:[Grades]}
+
+    &#34;&#34;&#34;
+    grades = find_all_student_scores(dict_of_grades)
+    standard_dev = round(stat.stdev(grades), 1)
+    return standard_dev
+
+&#34;&#34;&#34;
+The next 5 functions are used for option 5 of the program and will be used to make a Pie Chart
+and a Bar Chart of Letter Grades of the class
+&#34;&#34;&#34;
+def generate_report_charts_for_class(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which will generate the actual charts (pie and bar) for the class
+
+    Parameter1: dict_of_grades holds all student data {UIN:[grades]}
+
+    &#34;&#34;&#34;
+    directory_name = &#34;class_charts&#34;
+    created_directory = create_directory(directory_name)
+    all_letter_grades = get_all_letter_grades(dict_of_grades)
+    distribution = letter_grade_distribution(all_letter_grades)
+
+    generate_class_letter_grades_pie_chart(distribution, created_directory)
+    generate_class_letter_grades_bar_chart(distribution, created_directory)
+
+def get_all_letter_grades(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the letter grade of every student in the class
+
+    Parameter1: dict_of_grades holds all students UINs and their respective grades
+
+    &#34;&#34;&#34;
+    letter_grades = []
+    for key in dict_of_grades:
+        letter = calculate_everything_single_student(key, dict_of_grades)[5]
+        letter_grades.append(letter)
+    return letter_grades
+
+def letter_grade_distribution(list_of_letter_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the Distribution of all the letter grades of the class
+
+    Parameter1: list_of_letter_grades is just a list that holds every student&#39;s letter grade in order of UIN in
+    &#34;grades.csv&#34; file
+
+    &#34;&#34;&#34;
+    letter_distribution = {}
+    for letter in list_of_letter_grades:
+        if letter in letter_distribution:
+            letter_distribution[letter] += 1
+        if letter not in letter_distribution:
+            key = letter
+            value = 1
+            item = {key:value}
+            letter_distribution.update(item)
+    return letter_distribution
+
+def generate_class_letter_grades_pie_chart(dict_of_letter_occurances, save_path):
+    &#34;&#34;&#34;
+
+    Function which actually generates a pie chart of the letter grade distribution
+
+    Parameter1: dict_of_letter_occurances holds each letter grade as a key and the number of times the grade shows up
+    as the value
+
+    &#34;&#34;&#34;
+    data = dict_of_letter_occurances.values()
+    grade_distribution_labels = dict_of_letter_occurances.keys()
+    plt.figure(5)
+    plt.pie(data, labels=grade_distribution_labels, autopct=&#39;%1.1f%%&#39;)
+    plt.title(&#34;Class Letter Grade Distribution&#34;)
+    plt.axis(&#34;equal&#34;)
+    plt.savefig(save_path + f&#34;/Class_Letter_Distribution_Pie_Chart.png&#34;)
+
+    print(&#34;Class Letter Grade Distribution Pie Chart Generated!&#34;)
+    print(&#34;Check your files!&#34;)
+
+
+def generate_class_letter_grades_bar_chart(dict_of_letter_occurances, save_path):
+    &#34;&#34;&#34;
+
+    Function which actually generates the bar chart of the letter grade distribution
+
+    Parameter1: dict_of_letter_occurances holds each letter grade as a key and the number of times the grade shows up
+    as a value
+    &#34;&#34;&#34;
+    data = dict_of_letter_occurances.values()
+    labels = dict_of_letter_occurances.keys()
+    plt.figure(6)
+    plt.bar(labels, data, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Letter Grades&#34;)
+    plt.ylabel(&#34;Distribution&#34;)
+    plt.title(&#34;Distribution of Letter Grades&#34;)
+    plt.savefig(save_path + &#34;/Class_Letter_Grade_Distribution_Bar_Chart.png&#34;)
+    print(&#34;Class Letter Grade Distribution Bar Chart Generated!&#34;)
+    print(&#34;Check Your Files!&#34;)
+
+&#34;&#34;&#34;
+Main Driver Function
+&#34;&#34;&#34;
+def main():
+    &#34;&#34;&#34;Driver Function that calls all other functions&#34;&#34;&#34;
+    select_option()
+
+main()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="CSV_Data_Organization.calc_exams"><code class="name flex">
+<span>def <span class="ident">calc_exams</span></span>(<span>uin, dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that will calculate the average of the exams</p>
+<p>Parameter1: uin is the specified UIN which where the specified students grades are held</p>
+<p>Parameter2: dict_of_grades is the dictionary that holds every student's grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_exams(uin, dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that will calculate the average of the exams
+
+    Parameter1: uin is the specified UIN which where the specified students grades are held
+
+    Parameter2: dict_of_grades is the dictionary that holds every student&#39;s grades
+    &#34;&#34;&#34;
+    grades = dict_of_grades[uin]
+    exam_scores = grades[18:21]
+    exam_mean = sum(exam_scores) / len(exam_scores)
+    return exam_mean</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.calc_labs"><code class="name flex">
+<span>def <span class="ident">calc_labs</span></span>(<span>uin, dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which will calculate the average of the labs</p>
+<p>Parameter1: uin is the specified UIN which where the specified students grades are held</p>
+<p>Parameter2: dict_of_grades is the dictionary that holds every student's grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_labs(uin, dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which will calculate the average of the labs
+
+    Parameter1: uin is the specified UIN which where the specified students grades are held
+
+    Parameter2: dict_of_grades is the dictionary that holds every student&#39;s grades
+    &#34;&#34;&#34;
+    grades = dict_of_grades[uin]
+    labs_scores = grades[0:6]
+    lab_mean = sum(labs_scores) / len(labs_scores)
+    return lab_mean</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.calc_quizzes"><code class="name flex">
+<span>def <span class="ident">calc_quizzes</span></span>(<span>uin, dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that calculates the average of the quizzes</p>
+<p>Parameter1: uin is the specified UIN which where the specified students grades are held in dict_of_grades</p>
+<p>Parameter2: dict_of_grades is the dictionary that holds every student's grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_quizzes(uin, dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that calculates the average of the quizzes
+
+    Parameter1: uin is the specified UIN which where the specified students grades are held in dict_of_grades
+
+    Parameter2: dict_of_grades is the dictionary that holds every student&#39;s grades
+
+    &#34;&#34;&#34;
+    grades = dict_of_grades[uin]
+    quiz_scores = grades[6:12]
+    quiz_mean = sum(quiz_scores) / len(quiz_scores)
+    return quiz_mean</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.calc_readings"><code class="name flex">
+<span>def <span class="ident">calc_readings</span></span>(<span>uin, dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that calculates the average of the readings</p>
+<p>Parameter1: uin is the specified UIN which where the specified students grades are held in dict_of_grades</p>
+<p>Parameter2: dict_of_grades is the dictionary that holds every student's grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_readings(uin, dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that calculates the average of the readings
+
+    Parameter1: uin is the specified UIN which where the specified students grades are held in dict_of_grades
+
+    Parameter2: dict_of_grades is the dictionary that holds every student&#39;s grades
+
+    &#34;&#34;&#34;
+    grades = dict_of_grades[uin]
+    reading_score = grades[12:18]
+    reading_mean = sum(reading_score) / len(reading_score)
+    return reading_mean</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.calc_score"><code class="name flex">
+<span>def <span class="ident">calc_score</span></span>(<span>l_ave, e_ave, q_ave, r_ave, proj)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that calculates the weighted score</p>
+<p>Parameter1: l_ave is the average of the labs</p>
+<p>Parameter2: e_ave is the average of the exams</p>
+<p>Parameter3: q_ave is the average of the quiz's</p>
+<p>Parameter4: r_ave is the average of the reading activities</p>
+<p>Parameter5: proj is the project grade (not an average as there is only one project)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_score(l_ave, e_ave, q_ave, r_ave, proj):
+    &#34;&#34;&#34;
+
+    Function that calculates the weighted score
+
+    Parameter1: l_ave is the average of the labs
+
+    Parameter2: e_ave is the average of the exams
+
+    Parameter3: q_ave is the average of the quiz&#39;s
+
+    Parameter4: r_ave is the average of the reading activities
+
+    Parameter5: proj is the project grade (not an average as there is only one project)
+
+    &#34;&#34;&#34;
+    total_score_list = []
+
+    weighed_labs    = l_ave * .25
+    total_score_list.append(weighed_labs)
+
+    weighed_quizzes = q_ave * .10
+    total_score_list.append(weighed_quizzes)
+
+    weighed_exams   = e_ave * .45
+    total_score_list.append(weighed_exams)
+
+    weighed_reading = r_ave * .10
+    total_score_list.append(weighed_reading)
+
+    weighed_project = proj * .10
+    total_score_list.append(weighed_project)
+
+    total_score = sum(total_score_list)
+    return total_score</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.calculate_everything_single_student"><code class="name flex">
+<span>def <span class="ident">calculate_everything_single_student</span></span>(<span>uin, dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function will calculate the average of all assignment types in a single function</p>
+<p>Parameter1: uin is where the specified student uin will go</p>
+<p>Parameter2: dict_of_grades is what holds every student's grades attached by UIN</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calculate_everything_single_student(uin, dict_of_grades):
+    &#34;&#34;&#34;
+    Function will calculate the average of all assignment types in a single function
+
+    Parameter1: uin is where the specified student uin will go
+
+    Parameter2: dict_of_grades is what holds every student&#39;s grades attached by UIN
+
+    &#34;&#34;&#34;
+    lab_average = round(calc_labs(uin, dict_of_grades), 1)
+    exam_average = round(calc_exams(uin, dict_of_grades), 1)
+    quiz_average = round(calc_quizzes(uin, dict_of_grades), 1)
+    reading_average = round(calc_readings(uin, dict_of_grades), 1)
+    project = dict_of_grades[uin][-1]
+    weighted_score = round(calc_score(lab_average, exam_average, quiz_average, reading_average, project), 1)
+    letter = letter_grade(weighted_score)
+    return lab_average, exam_average, quiz_average, reading_average, weighted_score, letter</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.class_average_score"><code class="name flex">
+<span>def <span class="ident">class_average_score</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which finds the average of the class</p>
+<p>parameter1: Dictionary of UINs and respective grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def class_average_score(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the average of the class
+
+    parameter1: Dictionary of UINs and respective grades
+
+    &#34;&#34;&#34;
+    class_average = round((sum(find_all_student_scores(dict_of_grades)) / len(find_all_student_scores(dict_of_grades))), 1)
+    return class_average</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.class_median_score"><code class="name flex">
+<span>def <span class="ident">class_median_score</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that finds the median of all scores of the class</p>
+<p>Parameter1: dictionary of grades that holds UIN and grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def class_median_score(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that finds the median of all scores of the class
+
+    Parameter1: dictionary of grades that holds UIN and grades
+
+    &#34;&#34;&#34;
+    median = normal_rounding(stat.median(find_all_student_scores(dict_of_grades)), 1)
+    return median</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.class_standard_dev"><code class="name flex">
+<span>def <span class="ident">class_standard_dev</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that finds the standard deviation of the entire class's weighed scores</p>
+<p>Parameter1: Dictionary of {UINs:[Grades]}</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def class_standard_dev(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that finds the standard deviation of the entire class&#39;s weighed scores
+
+    Parameter1: Dictionary of {UINs:[Grades]}
+
+    &#34;&#34;&#34;
+    grades = find_all_student_scores(dict_of_grades)
+    standard_dev = round(stat.stdev(grades), 1)
+    return standard_dev</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.create_directory"><code class="name flex">
+<span>def <span class="ident">create_directory</span></span>(<span>directory_name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function Creates a directory with the name provided which will hold Charts</p>
+<p>Parameter1: directory_name is the desired directory name</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_directory(directory_name):
+    &#34;&#34;&#34;
+
+    Function Creates a directory with the name provided which will hold Charts
+
+    Parameter1: directory_name is the desired directory name
+
+    &#34;&#34;&#34;
+    new_directory = f&#34;/{directory_name}&#34;
+    &#39;&#39;&#39;parent_directory = &#34;C:/Users/Public/PycharmProjects/Project[CSCE110]&#34;&#39;&#39;&#39;
+    parent_directory = &#34;.&#34;
+    path = parent_directory + new_directory
+    os.mkdir(path, mode=0o666)
+    print(f&#34;Directory named \&#34;{directory_name}\&#34; at path: \&#34;{path}\&#34; was created!\n&#34;
+          f&#34;Check Your FILES!&#34;)
+    return path</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.find_all_student_scores"><code class="name flex">
+<span>def <span class="ident">find_all_student_scores</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which calculates every student's weighted score</p>
+<p>Parameter1: Dictionary that holds all students UIN and respective grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_all_student_scores(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which calculates every student&#39;s weighted score
+
+    Parameter1: Dictionary that holds all students UIN and respective grades
+
+    &#34;&#34;&#34;
+    scores = []
+    for key in dict_of_grades:
+        score = calculate_everything_single_student(key, dict_of_grades)[4]
+        scores.append(score)
+
+    return scores</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_class_letter_grades_bar_chart"><code class="name flex">
+<span>def <span class="ident">generate_class_letter_grades_bar_chart</span></span>(<span>dict_of_letter_occurances, save_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which actually generates the bar chart of the letter grade distribution</p>
+<p>Parameter1: dict_of_letter_occurances holds each letter grade as a key and the number of times the grade shows up
+as a value</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_class_letter_grades_bar_chart(dict_of_letter_occurances, save_path):
+    &#34;&#34;&#34;
+
+    Function which actually generates the bar chart of the letter grade distribution
+
+    Parameter1: dict_of_letter_occurances holds each letter grade as a key and the number of times the grade shows up
+    as a value
+    &#34;&#34;&#34;
+    data = dict_of_letter_occurances.values()
+    labels = dict_of_letter_occurances.keys()
+    plt.figure(6)
+    plt.bar(labels, data, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Letter Grades&#34;)
+    plt.ylabel(&#34;Distribution&#34;)
+    plt.title(&#34;Distribution of Letter Grades&#34;)
+    plt.savefig(save_path + &#34;/Class_Letter_Grade_Distribution_Bar_Chart.png&#34;)
+    print(&#34;Class Letter Grade Distribution Bar Chart Generated!&#34;)
+    print(&#34;Check Your Files!&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_class_letter_grades_pie_chart"><code class="name flex">
+<span>def <span class="ident">generate_class_letter_grades_pie_chart</span></span>(<span>dict_of_letter_occurances, save_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which actually generates a pie chart of the letter grade distribution</p>
+<p>Parameter1: dict_of_letter_occurances holds each letter grade as a key and the number of times the grade shows up
+as the value</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_class_letter_grades_pie_chart(dict_of_letter_occurances, save_path):
+    &#34;&#34;&#34;
+
+    Function which actually generates a pie chart of the letter grade distribution
+
+    Parameter1: dict_of_letter_occurances holds each letter grade as a key and the number of times the grade shows up
+    as the value
+
+    &#34;&#34;&#34;
+    data = dict_of_letter_occurances.values()
+    grade_distribution_labels = dict_of_letter_occurances.keys()
+    plt.figure(5)
+    plt.pie(data, labels=grade_distribution_labels, autopct=&#39;%1.1f%%&#39;)
+    plt.title(&#34;Class Letter Grade Distribution&#34;)
+    plt.axis(&#34;equal&#34;)
+    plt.savefig(save_path + f&#34;/Class_Letter_Distribution_Pie_Chart.png&#34;)
+
+    print(&#34;Class Letter Grade Distribution Pie Chart Generated!&#34;)
+    print(&#34;Check your files!&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_class_report"><code class="name flex">
+<span>def <span class="ident">generate_class_report</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Option for instructor to get data about the entire class</p>
+<p>Parameter1: Dictionary that holds every student's uin and grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_class_report(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Option for instructor to get data about the entire class
+
+    Parameter1: Dictionary that holds every student&#39;s uin and grades
+
+    &#34;&#34;&#34;
+    total_students = len(list(dict_of_grades.keys()))
+    minimum_score  = lowest_class_score(dict_of_grades)
+    maximum_score  = highest_class_score(dict_of_grades)
+    median_score   = class_median_score(dict_of_grades)
+    average_score  = class_average_score(dict_of_grades)
+    standard_dev   = class_standard_dev(dict_of_grades)
+
+    class_report_file = open(f&#34;report.txt&#34;, &#34;w&#34;) # Creates empty file for the report
+    class_report_file.write(f&#34;Total number of students: {total_students}\n&#34;
+                            f&#34;Minimum score: {minimum_score}\n&#34;
+                            f&#34;Maximum score: {maximum_score}\n&#34;
+                            f&#34;Median score: {median_score}\n&#34;
+                            f&#34;Mean score: {average_score}\n&#34;
+                            f&#34;Standard deviation: {standard_dev}\n&#34;
+                            )
+    print(f&#34;Class Report Generated!&#34;)
+    print(f&#34;Check files for the report!&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_exams_bar_chart"><code class="name flex">
+<span>def <span class="ident">generate_exams_bar_chart</span></span>(<span>student_grades, header_line, uin, save_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that creates the bar chart for the exams</p>
+<p>Parameter1: student_grades is the section of the dictionary that has the specified student's grades</p>
+<p>Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what</p>
+<p>Parameter3: uin is the current student's UIN</p>
+<p>Parameter4: save_path is for the chart to be saved at the newly created directory, <strong><em>*</em></strong>action needed<strong>*</strong>*</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_exams_bar_chart(student_grades, header_line, uin, save_path):
+    &#34;&#34;&#34;
+
+    Function that creates the bar chart for the exams
+
+    Parameter1: student_grades is the section of the dictionary that has the specified student&#39;s grades
+
+    Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what
+
+    Parameter3: uin is the current student&#39;s UIN
+
+    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+
+    &#34;&#34;&#34;
+    exam_scores = student_grades[18:21]
+    each_exam = header_line[19:22]
+    plt.figure(2)
+    plt.bar(each_exam, exam_scores, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Exam Number&#34;)
+    plt.ylabel(&#34;Score&#34;)
+    plt.title(f&#34;Grades for Exams for Student with UIN: {uin}&#34;)
+    plt.savefig(save_path + f&#34;/{uin}_Exam_Bar_Chart.png&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_labs_bar_chart"><code class="name flex">
+<span>def <span class="ident">generate_labs_bar_chart</span></span>(<span>student_grades, header_line, uin, save_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that creates the bar chart for labs</p>
+<p>Parameter1: student_grades is the section of the dictionary that has the specified student's grades</p>
+<p>Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what</p>
+<p>Parameter3: uin is the current student's UIN</p>
+<p>Parameter4: save_path is for the chart to be saved at the newly created directory, <strong><em>*</em></strong>action needed<strong>*</strong>*</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_labs_bar_chart(student_grades, header_line, uin, save_path):
+    &#34;&#34;&#34;
+
+    Function that creates the bar chart for labs
+
+    Parameter1: student_grades is the section of the dictionary that has the specified student&#39;s grades
+
+    Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what
+
+    Parameter3: uin is the current student&#39;s UIN
+
+    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+
+    &#34;&#34;&#34;
+    lab_scores = student_grades[0:6]
+    each_lab = header_line[1:7]
+    plt.figure(1)
+    plt.bar(each_lab, lab_scores, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Lab Assignments&#34;)
+    plt.ylabel(&#34;Score&#34;)
+    plt.title(f&#34;Grades for Lab Assignments for the student with UIN: {uin}&#34;)
+    plt.savefig(save_path + f&#34;/{uin}_Lab_Bar_Chart.png&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_quiz_bar_chart"><code class="name flex">
+<span>def <span class="ident">generate_quiz_bar_chart</span></span>(<span>student_grades, header_line, uin, save_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that creates the bar chart for all the quiz's</p>
+<p>Parameter1: student_grades is the section of the dictionary that has the specified student's grades</p>
+<p>Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what</p>
+<p>Parameter3: uin is the current student's UIN</p>
+<p>Parameter4: save_path is for the chart to be saved at the newly created directory, <strong><em>*</em></strong>action needed<strong>*</strong>*</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_quiz_bar_chart(student_grades, header_line, uin, save_path):
+    &#34;&#34;&#34;
+
+    Function that creates the bar chart for all the quiz&#39;s
+
+    Parameter1: student_grades is the section of the dictionary that has the specified student&#39;s grades
+
+    Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what
+
+    Parameter3: uin is the current student&#39;s UIN
+
+    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+
+    &#34;&#34;&#34;
+    quiz_scores = student_grades[6:12]
+    each_quiz = header_line[7:13]
+    plt.figure(4)
+    plt.bar(each_quiz, quiz_scores, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Quiz Number&#34;)
+    plt.ylabel(&#34;Score&#34;)
+    plt.title(f&#34;Grades for Quiz Assignments for Student with UIN: {uin}&#34;)
+    plt.savefig(save_path + f&#34;/{uin}_Quiz_Bar_Chart.png&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_readings_bar_chart"><code class="name flex">
+<span>def <span class="ident">generate_readings_bar_chart</span></span>(<span>student_grades, header_line, uin, save_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that creates the bar chart for reading activities</p>
+<p>Parameter1: student_grades is the section of the dictionary that has the specified student's grades</p>
+<p>Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what</p>
+<p>Parameter3: uin is the current student's UIN</p>
+<p>Parameter4: save_path is for the chart to be saved at the newly created directory, <strong><em>*</em></strong>action needed<strong>*</strong>*</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_readings_bar_chart(student_grades, header_line, uin, save_path):
+    &#34;&#34;&#34;
+
+    Function that creates the bar chart for reading activities
+
+    Parameter1: student_grades is the section of the dictionary that has the specified student&#39;s grades
+
+    Parameter2: header_line is the line on top of the grades.csv file which depicts what grades mean what
+
+    Parameter3: uin is the current student&#39;s UIN
+
+    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+
+    &#34;&#34;&#34;
+    reading_scores = student_grades[12:18]
+    each_reading = header_line[13:19]
+    plt.figure(3)
+    plt.bar(each_reading, reading_scores, color=&#34;red&#34;, width=.5)
+    plt.xlabel(&#34;Reading Assignment&#34;)
+    plt.ylabel(&#34;Score&#34;)
+    plt.title(f&#34;Grades for Reading Assignments for Student with UIN: {uin}&#34;)
+    plt.savefig(save_path + f&#34;/{uin}_Readings_Bar_Chart.png&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_report_charts_for_class"><code class="name flex">
+<span>def <span class="ident">generate_report_charts_for_class</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which will generate the actual charts (pie and bar) for the class</p>
+<p>Parameter1: dict_of_grades holds all student data {UIN:[grades]}</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_report_charts_for_class(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which will generate the actual charts (pie and bar) for the class
+
+    Parameter1: dict_of_grades holds all student data {UIN:[grades]}
+
+    &#34;&#34;&#34;
+    directory_name = &#34;class_charts&#34;
+    created_directory = create_directory(directory_name)
+    all_letter_grades = get_all_letter_grades(dict_of_grades)
+    distribution = letter_grade_distribution(all_letter_grades)
+
+    generate_class_letter_grades_pie_chart(distribution, created_directory)
+    generate_class_letter_grades_bar_chart(distribution, created_directory)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_student_report_charts"><code class="name flex">
+<span>def <span class="ident">generate_student_report_charts</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that generates both the Bar and Pie Chart for the Letter Grade Distribution</p>
+<p>Parameter1: dict_of_grades is what holds all student's grades attached by UIN</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_student_report_charts(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function that generates both the Bar and Pie Chart for the Letter Grade Distribution
+
+    Parameter1: dict_of_grades is what holds all student&#39;s grades attached by UIN
+
+    &#34;&#34;&#34;
+    what_uin = input(&#34;Enter the Specified UIN for the chart report: &#34;)
+    if what_uin not in dict_of_grades.keys():
+        # Branch for the case where uin entered is not in the grades file
+        print(&#34;Invalid UIN!&#34;)
+        generate_student_report_charts(dict_of_grades)
+    else:
+        # Branch that actually creates the bar charts for the individual
+        path = create_directory(what_uin)
+
+        header_line = (get_file_data(&#34;Original_Data/grades.csv&#34;))[1]
+        student_grades = dict_of_grades[what_uin]
+
+        generate_labs_bar_chart(student_grades, header_line, what_uin, path)
+        generate_exams_bar_chart(student_grades, header_line, what_uin, path)
+        generate_readings_bar_chart(student_grades, header_line, what_uin, path)
+        generate_quiz_bar_chart(student_grades, header_line, what_uin, path)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.generate_student_report_file"><code class="name flex">
+<span>def <span class="ident">generate_student_report_file</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates the file which the user is prompted for an uin and writes to a new file titles the uin.txt</p>
+<p>Parameter1: Dictionary of Keys (UINs) and Values (Grades)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_student_report_file(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Generates the file which the user is prompted for an uin and writes to a new file titles the uin.txt
+
+    Parameter1: Dictionary of Keys (UINs) and Values (Grades)
+    &#34;&#34;&#34;
+    what_uin = input(&#34;Enter the specified UIN for the report: &#34;)
+    if what_uin not in dict_of_grades.keys():
+        # case for if uin entered is not a key in the dictionary specified, then a message pops up and a re-prompt occurs
+        print(&#34;Invalid UIN&#34;)
+        generate_student_report_file(dict_of_grades)
+    else:
+        # Branch that actually calculates the averages and writes to a file
+        lab_average     = calculate_everything_single_student(what_uin, dict_of_grades)[0]
+        exam_average    = calculate_everything_single_student(what_uin, dict_of_grades)[1]
+        quiz_average    = calculate_everything_single_student(what_uin, dict_of_grades)[2]
+        reading_average = calculate_everything_single_student(what_uin, dict_of_grades)[3]
+        weighted_score  = calculate_everything_single_student(what_uin, dict_of_grades)[4]
+        letter          = letter_grade(weighted_score)
+
+        student_report_file = open(f&#34;{what_uin}.txt&#34;, &#34;w&#34;) # creates empty file titled the UIN specified.txt, in the mode of writing
+        print(f&#34;File: \&#34;{what_uin}.txt\&#34; has been created!&#34;)
+        student_report_file.write(f&#34;Exams mean: {exam_average}\n&#34;
+                                  f&#34;Labs mean: {lab_average}\n&#34;
+                                  f&#34;Quizzes mean: {quiz_average}\n&#34;
+                                  f&#34;Reading activities mean: {reading_average}\n&#34;
+                                  f&#34;Score: {weighted_score}%\n&#34;
+                                  f&#34;Letter grade: {letter}&#34;)
+        student_report_file.close()
+        print(f&#34;File: \&#34;{what_uin}.txt\&#34; has been updated!&#34;)
+        return lab_average, exam_average, quiz_average, reading_average, weighted_score</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.get_all_letter_grades"><code class="name flex">
+<span>def <span class="ident">get_all_letter_grades</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which finds the letter grade of every student in the class</p>
+<p>Parameter1: dict_of_grades holds all students UINs and their respective grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_letter_grades(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the letter grade of every student in the class
+
+    Parameter1: dict_of_grades holds all students UINs and their respective grades
+
+    &#34;&#34;&#34;
+    letter_grades = []
+    for key in dict_of_grades:
+        letter = calculate_everything_single_student(key, dict_of_grades)[5]
+        letter_grades.append(letter)
+    return letter_grades</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.get_file_data"><code class="name flex">
+<span>def <span class="ident">get_file_data</span></span>(<span>file_name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that opens the file titles grades.csv</p>
+<p>Parameter1: file_name is the name of the file that contains the data</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_file_data(file_name):
+    &#34;&#34;&#34;
+
+    Function that opens the file titles grades.csv
+
+    Parameter1: file_name is the name of the file that contains the data
+    &#34;&#34;&#34;
+    grades_file = open(file_name)
+
+    # cvs.reader() reads the file line by line
+    reading_file = csv.reader(grades_file)
+
+    header_line = next(reading_file)
+
+    every_row = []
+    for row in reading_file:
+        # Collects all data from every row, except first, in the file into a list and appends that list to the entire data list of every_row
+        every_row.append(row)
+
+    # .close() method closes the file
+    grades_file.close()
+    return every_row, header_line</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.highest_class_score"><code class="name flex">
+<span>def <span class="ident">highest_class_score</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which finds the highest weighted score for the report of the class</p>
+<p>Parameter1: Dictionary that holds all students uin and respective grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def highest_class_score(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the highest weighted score for the report of the class
+
+    Parameter1: Dictionary that holds all students uin and respective grades
+
+    &#34;&#34;&#34;
+    highest_score = max(find_all_student_scores(dict_of_grades))
+    return highest_score</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.letter_grade"><code class="name flex">
+<span>def <span class="ident">letter_grade</span></span>(<span>weighted_score)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which calculates letter grades by the weighted Grade</p>
+<p>Parameter1: weighted_score is the average score of a single student</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def letter_grade(weighted_score):
+    &#34;&#34;&#34;
+
+    Function which calculates letter grades by the weighted Grade
+
+    Parameter1: weighted_score is the average score of a single student
+
+    &#34;&#34;&#34;
+    if weighted_score &gt;= 90:
+        grade_letter = &#39;A&#39;
+    elif 90 &gt; weighted_score &gt;= 80:
+        grade_letter = &#39;B&#39;
+    elif 80 &gt; weighted_score &gt;= 70:
+        grade_letter = &#39;C&#39;
+    elif 70 &gt; weighted_score &gt;= 60:
+        grade_letter = &#39;D&#39;
+    else:
+        grade_letter = &#39;F&#39;
+    return grade_letter</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.letter_grade_distribution"><code class="name flex">
+<span>def <span class="ident">letter_grade_distribution</span></span>(<span>list_of_letter_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which finds the Distribution of all the letter grades of the class</p>
+<p>Parameter1: list_of_letter_grades is just a list that holds every student's letter grade in order of UIN in
+"grades.csv" file</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def letter_grade_distribution(list_of_letter_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the Distribution of all the letter grades of the class
+
+    Parameter1: list_of_letter_grades is just a list that holds every student&#39;s letter grade in order of UIN in
+    &#34;grades.csv&#34; file
+
+    &#34;&#34;&#34;
+    letter_distribution = {}
+    for letter in list_of_letter_grades:
+        if letter in letter_distribution:
+            letter_distribution[letter] += 1
+        if letter not in letter_distribution:
+            key = letter
+            value = 1
+            item = {key:value}
+            letter_distribution.update(item)
+    return letter_distribution</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.lowest_class_score"><code class="name flex">
+<span>def <span class="ident">lowest_class_score</span></span>(<span>dict_of_grades)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function which finds the lowest weighted score for the report of the class</p>
+<p>Parameter1: Dictionary that holds all students uin and respective grades</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def lowest_class_score(dict_of_grades):
+    &#34;&#34;&#34;
+
+    Function which finds the lowest weighted score for the report of the class
+
+    Parameter1: Dictionary that holds all students uin and respective grades
+    &#34;&#34;&#34;
+    lowest_score = min(find_all_student_scores(dict_of_grades))
+    return lowest_score</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Driver Function that calls all other functions</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    &#34;&#34;&#34;Driver Function that calls all other functions&#34;&#34;&#34;
+    select_option()</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.normal_rounding"><code class="name flex">
+<span>def <span class="ident">normal_rounding</span></span>(<span>number, decimal_places)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>round() function always rounds to the nearest even number, this function will
+allow you to round any number to a specified number of decimal places traditionally
+instead of "banker's rounding" of rounding to the nearest even number</p>
+<p>Parameter1: number The Number you want to round to</p>
+<p>Parameter2: decimal_places How many decimal places you want to round</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def normal_rounding(number, decimal_places):
+    &#34;&#34;&#34;
+
+    round() function always rounds to the nearest even number, this function will
+    allow you to round any number to a specified number of decimal places traditionally
+    instead of &#34;banker&#39;s rounding&#34; of rounding to the nearest even number
+
+    Parameter1: number The Number you want to round to
+
+    Parameter2: decimal_places How many decimal places you want to round
+
+    &#34;&#34;&#34;
+    exponent = number * 10 ** decimal_places
+    if abs(exponent) - abs(math.floor(exponent)) &lt; .5:
+        return math.floor(exponent) / 10 ** decimal_places
+    else:
+        return math.ceil(exponent) / 10 ** decimal_places</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.print_menu"><code class="name flex">
+<span>def <span class="ident">print_menu</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that simply prints the menu</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_menu():
+    &#34;&#34;&#34;
+    Function that simply prints the menu
+    &#34;&#34;&#34;
+    print(&#34;&#34;&#34;*******************Main Menu*****************
+1. Read CSV file of grades
+2. Generate student report file
+3. Generate student report charts
+4. Generate class report file
+5. Generate class report charts
+6. Quit
+************************************************
+    &#34;&#34;&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CSV_Data_Organization.select_option"><code class="name flex">
+<span>def <span class="ident">select_option</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that asks user for input of what option from the menu the user wants</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def select_option():
+    &#34;&#34;&#34;
+    Function that asks user for input of what option from the menu the user wants
+    &#34;&#34;&#34;
+    option = -1 # Starts the users choice as -1 as a &#34;null-choice&#34; which means they have not chosen a choice yet
+    library_of_grades = {}  # dictionary that will hold every student and their grades as a list
+    while option != 6:
+        print_menu() # prints menu
+        option = int(input(&#34;Select from the options above: &#34;)) # asks user for option
+        if   option == 1:
+            # option for reading grades.csv and obtaining all data for calculations
+            all_file_data = get_file_data(&#34;Original_Data/grades.csv&#34;)[0]
+
+            for line in all_file_data[0:]:
+                uin = line[0]                        # UIN is the first element of every row and will the key for the dictionary
+
+                grades_as_list_of_strings = line[1:] # Grades come as strings and are every element after UIN
+                grades = [float(grade) for grade in grades_as_list_of_strings] # List comprehension so every number string is converted to a value that allows math to be done to it                     # Grades will be the value for the dictionary
+
+                student = {uin:grades}
+                library_of_grades.update(student)
+            print(&#34;File: \&#34;grades.csv\&#34; has been read!&#34;)
+            print(&#34;&#34;)
+        elif option == 2:
+            if len(library_of_grades) == 0:
+                # Case for if file has not been read yet
+                print(&#34;No file read\n&#34;)
+                pass
+            else:
+                generate_student_report_file(library_of_grades)
+                print(&#34;&#34;)
+                pass
+        elif option == 3:
+            if len(library_of_grades) == 0:
+                # Case for if grades.csv file has not been read yet
+                print(&#34;No file read\n&#34;)
+                pass
+            else:
+                generate_student_report_charts(library_of_grades)
+                print(&#34;&#34;)
+                pass
+        elif option == 4:
+            if len(library_of_grades) == 0:
+                # Case for if file has not been read yet
+                print(&#34;No file read\n&#34;)
+                pass
+            else:
+                generate_class_report(library_of_grades)
+                print(&#34;&#34;)
+                pass
+        elif option == 5:
+            if len(library_of_grades) == 0:
+                # Case for if file has not been read yet
+                print(&#34;No file read\n&#34;)
+                pass
+            else:
+                generate_report_charts_for_class(library_of_grades)
+                print(&#34;&#34;)
+                pass
+        elif option == 6:
+            # Case for if user wants to quit
+            print(&#34;&#34;)
+            break
+        else:
+            print(&#34;Unexpected Option Choice. Try Again\n&#34;)
+
+    print(&#34;You have exited the program!&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="CSV_Data_Organization.calc_exams" href="#CSV_Data_Organization.calc_exams">calc_exams</a></code></li>
+<li><code><a title="CSV_Data_Organization.calc_labs" href="#CSV_Data_Organization.calc_labs">calc_labs</a></code></li>
+<li><code><a title="CSV_Data_Organization.calc_quizzes" href="#CSV_Data_Organization.calc_quizzes">calc_quizzes</a></code></li>
+<li><code><a title="CSV_Data_Organization.calc_readings" href="#CSV_Data_Organization.calc_readings">calc_readings</a></code></li>
+<li><code><a title="CSV_Data_Organization.calc_score" href="#CSV_Data_Organization.calc_score">calc_score</a></code></li>
+<li><code><a title="CSV_Data_Organization.calculate_everything_single_student" href="#CSV_Data_Organization.calculate_everything_single_student">calculate_everything_single_student</a></code></li>
+<li><code><a title="CSV_Data_Organization.class_average_score" href="#CSV_Data_Organization.class_average_score">class_average_score</a></code></li>
+<li><code><a title="CSV_Data_Organization.class_median_score" href="#CSV_Data_Organization.class_median_score">class_median_score</a></code></li>
+<li><code><a title="CSV_Data_Organization.class_standard_dev" href="#CSV_Data_Organization.class_standard_dev">class_standard_dev</a></code></li>
+<li><code><a title="CSV_Data_Organization.create_directory" href="#CSV_Data_Organization.create_directory">create_directory</a></code></li>
+<li><code><a title="CSV_Data_Organization.find_all_student_scores" href="#CSV_Data_Organization.find_all_student_scores">find_all_student_scores</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_class_letter_grades_bar_chart" href="#CSV_Data_Organization.generate_class_letter_grades_bar_chart">generate_class_letter_grades_bar_chart</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_class_letter_grades_pie_chart" href="#CSV_Data_Organization.generate_class_letter_grades_pie_chart">generate_class_letter_grades_pie_chart</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_class_report" href="#CSV_Data_Organization.generate_class_report">generate_class_report</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_exams_bar_chart" href="#CSV_Data_Organization.generate_exams_bar_chart">generate_exams_bar_chart</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_labs_bar_chart" href="#CSV_Data_Organization.generate_labs_bar_chart">generate_labs_bar_chart</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_quiz_bar_chart" href="#CSV_Data_Organization.generate_quiz_bar_chart">generate_quiz_bar_chart</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_readings_bar_chart" href="#CSV_Data_Organization.generate_readings_bar_chart">generate_readings_bar_chart</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_report_charts_for_class" href="#CSV_Data_Organization.generate_report_charts_for_class">generate_report_charts_for_class</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_student_report_charts" href="#CSV_Data_Organization.generate_student_report_charts">generate_student_report_charts</a></code></li>
+<li><code><a title="CSV_Data_Organization.generate_student_report_file" href="#CSV_Data_Organization.generate_student_report_file">generate_student_report_file</a></code></li>
+<li><code><a title="CSV_Data_Organization.get_all_letter_grades" href="#CSV_Data_Organization.get_all_letter_grades">get_all_letter_grades</a></code></li>
+<li><code><a title="CSV_Data_Organization.get_file_data" href="#CSV_Data_Organization.get_file_data">get_file_data</a></code></li>
+<li><code><a title="CSV_Data_Organization.highest_class_score" href="#CSV_Data_Organization.highest_class_score">highest_class_score</a></code></li>
+<li><code><a title="CSV_Data_Organization.letter_grade" href="#CSV_Data_Organization.letter_grade">letter_grade</a></code></li>
+<li><code><a title="CSV_Data_Organization.letter_grade_distribution" href="#CSV_Data_Organization.letter_grade_distribution">letter_grade_distribution</a></code></li>
+<li><code><a title="CSV_Data_Organization.lowest_class_score" href="#CSV_Data_Organization.lowest_class_score">lowest_class_score</a></code></li>
+<li><code><a title="CSV_Data_Organization.main" href="#CSV_Data_Organization.main">main</a></code></li>
+<li><code><a title="CSV_Data_Organization.normal_rounding" href="#CSV_Data_Organization.normal_rounding">normal_rounding</a></code></li>
+<li><code><a title="CSV_Data_Organization.print_menu" href="#CSV_Data_Organization.print_menu">print_menu</a></code></li>
+<li><code><a title="CSV_Data_Organization.select_option" href="#CSV_Data_Organization.select_option">select_option</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
