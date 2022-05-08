@@ -1,9 +1,13 @@
 
 """
 File:    CSV_Data_Organization.py
+
 Author:  Chayce Leonard (231009015)
+
 Date:    05/09/2022
+
 Email:   chayce4school@tamu.edu
+
 """
 
 import csv
@@ -18,6 +22,8 @@ Function which will allow input from the user
 def select_option():
     """
     Function that asks user for input of what option from the menu the user wants
+
+    Returns nothing but will represent the UI of the entire program
     """
     option = -1 # Starts the users choice as -1 as a "null-choice" which means they have not chosen a choice yet
     library_of_grades = {}  # dictionary that will hold every student and their grades as a list
@@ -89,6 +95,8 @@ Next Function which prints the menu
 def print_menu():
     """
     Function that simply prints the menu
+
+    No Returns
     """
     print("""*******************Main Menu*****************
 1. Read CSV file of grades
@@ -109,6 +117,16 @@ def get_file_data(file_name):
     Function that opens the file titles grades.csv
 
     Parameter1: file_name is the name of the file that contains the data
+        Ex: grades.csv is the file_name
+
+    Return1: every_row is a list that contains every value from the grades.csv file after the header line inside
+             another list
+        Ex: every_row looks like [['UIN', 92, 29, 33...], ['UIN2', 100, 21, 40...]...]
+
+    Return2: header_line_capitalized is a list that holds the first line of the file indicated,
+             separated by a comma, and capitalized
+        Ex: header_line looks like ['UIN', 'Lab1', 'Lab2', 'Lab3', ... 'Project']
+
     """
     grades_file = open(file_name)
 
@@ -122,9 +140,14 @@ def get_file_data(file_name):
         # Collects all data from every row, except first, in the file into a list and appends that list to the entire data list of every_row
         every_row.append(row)
 
+    header_line_capitalized = []
+    for label in header_line:
+        word = label.capitalize()
+        header_line_capitalized.append(word)
+
     # .close() method closes the file
     grades_file.close()
-    return every_row, header_line
+    return every_row, header_line_capitalized
 
 """
 The Next 8 functions are used for option 2 of the select_option() function which create a file of a 
@@ -136,6 +159,8 @@ def generate_student_report_file(dict_of_grades):
     Generates the file which the user is prompted for an uin and writes to a new file titles the uin.txt
 
     Parameter1: Dictionary of Keys (UINs) and Values (Grades)
+
+    No Returns but just generates a text file
     """
     what_uin = input("Enter the specified UIN for the report: ")
     if what_uin not in dict_of_grades.keys():
@@ -161,7 +186,6 @@ def generate_student_report_file(dict_of_grades):
                                   f"Letter grade: {letter}")
         student_report_file.close()
         print(f"File: \"{what_uin}.txt\" has been updated!")
-        return lab_average, exam_average, quiz_average, reading_average, weighted_score
 
 def calc_labs(uin, dict_of_grades):
     """
@@ -171,6 +195,10 @@ def calc_labs(uin, dict_of_grades):
     Parameter1: uin is the specified UIN which where the specified students grades are held
 
     Parameter2: dict_of_grades is the dictionary that holds every student's grades
+
+    Return1: lab_mean is the average of the Labs
+        Ex: [Lab1_grade, Lab2_grade, ... Lab6_grade] / len[total_number_of_labs] equals Lab_Average
+
     """
     grades = dict_of_grades[uin]
     labs_scores = grades[0:6]
@@ -185,6 +213,10 @@ def calc_exams(uin, dict_of_grades):
     Parameter1: uin is the specified UIN which where the specified students grades are held
 
     Parameter2: dict_of_grades is the dictionary that holds every student's grades
+
+    Return1: exam_mean is the average of all the exams
+        Ex: [exam1_grade, ... exam3_grade] / len[total_number_of_exams] equals Exam_Average
+
     """
     grades = dict_of_grades[uin]
     exam_scores = grades[18:21]
@@ -200,6 +232,9 @@ def calc_quizzes(uin, dict_of_grades):
 
     Parameter2: dict_of_grades is the dictionary that holds every student's grades
 
+    Return1: quiz_mean is the average of the quiz's
+        Ex: [quiz1_grade, quiz2_grade, ... quiz6_grade] / len[total_number_of_quiz's] equals quiz_Average
+
     """
     grades = dict_of_grades[uin]
     quiz_scores = grades[6:12]
@@ -214,6 +249,9 @@ def calc_readings(uin, dict_of_grades):
     Parameter1: uin is the specified UIN which where the specified students grades are held in dict_of_grades
 
     Parameter2: dict_of_grades is the dictionary that holds every student's grades
+
+    Return1: reading_mean is the average of all the readings
+        Ex: [reading1_grade, Lab2_grade, ... Lab6_grade] / len[total_number_of_labs] equals reading_Average
 
     """
     grades = dict_of_grades[uin]
@@ -235,6 +273,9 @@ def calc_score(l_ave, e_ave, q_ave, r_ave, proj):
     Parameter4: r_ave is the average of the reading activities
 
     Parameter5: proj is the project grade (not an average as there is only one project)
+
+    Return1: total_score is the weighted_score of all the grades of a single student
+        Ex: l_ave + e_ave + q_ave + r_ave + project = total_score
 
     """
     total_score_list = []
@@ -264,6 +305,9 @@ def letter_grade(weighted_score):
 
     Parameter1: weighted_score is the average score of a single student
 
+    Return1: grade_letter is the String of a Letter Grade given by where the weighted_score ranges from
+        Ex: grade_letter will be determined by where the weighted_score ranges
+
     """
     if weighted_score >= 90:
         grade_letter = 'A'
@@ -284,6 +328,24 @@ def calculate_everything_single_student(uin, dict_of_grades):
     Parameter1: uin is where the specified student uin will go
 
     Parameter2: dict_of_grades is what holds every student's grades attached by UIN
+
+    Return1: lab_average is the averages of all the labs
+        Ex: lab_scores of [90, 100, 95] returns a lab_average of 95
+
+    Return2: exam_average is the average of all the exams
+        Ex: exam_scores of [90, 100, 95] return an exam_average of 95
+
+    Return3: quiz_average is the average of all the quiz's
+        Ex: quiz_scores of [90, 100, 95] return a quiz_average of 95
+
+    Return4: reading_average is the average of all the readings
+        Ex: reading_scores of [90, 100, 95] return a reading_average of 95
+
+    Return5: weighted_score is the score of a student when all assignments are accounted for and respective weights
+        Ex: averages of [56.8, 79.6, 70.3, 77.4, 88] returns a weighted score of 69.0
+
+    Return6: letter is the actual letter grade of a student based on the weighted score
+        Ex: weighted score of 69.0 will give a letter grade of 'D'
 
     """
     lab_average = round(calc_labs(uin, dict_of_grades), 1)
@@ -306,6 +368,7 @@ def generate_student_report_charts(dict_of_grades):
 
     Parameter1: dict_of_grades is what holds all student's grades attached by UIN
 
+    No Return but will generate all the report charts for a student
     """
     what_uin = input("Enter the Specified UIN for the chart report: ")
     if what_uin not in dict_of_grades.keys():
@@ -317,6 +380,7 @@ def generate_student_report_charts(dict_of_grades):
         path = create_directory(what_uin)
 
         header_line = (get_file_data("Original_Data/grades.csv"))[1]
+
         student_grades = dict_of_grades[what_uin]
 
         generate_labs_bar_chart(student_grades, header_line, what_uin, path)
@@ -331,15 +395,25 @@ def create_directory(directory_name):
 
     Parameter1: directory_name is the desired directory name
 
+    Return1: path is the file path that the file will be located
+        Ex: directory_name of "09876543210" will be at the end of the path: C:/Users/PycharmProjects/directory_name
+
+    Exception1: FileExistsError may occur if directory with students UIN is already made
+
     """
-    new_directory = f"/{directory_name}"
-    '''parent_directory = "C:/Users/Public/PycharmProjects/Project[CSCE110]"'''
-    parent_directory = "."
-    path = parent_directory + new_directory
-    os.mkdir(path, mode=0o666)
-    print(f"Directory named \"{directory_name}\" at path: \"{path}\" was created!\n"
-          f"Check Your FILES!")
-    return path
+    new_path = ""
+    try:
+        new_directory = f"/{directory_name}"
+        # '''parent_directory = "C:/Users/Public/PycharmProjects/Project[CSCE110]"'''
+        parent_directory = "."
+        new_path = parent_directory + new_directory
+        os.mkdir(new_path, mode=0o666)
+        print(f"Directory named \"{directory_name}\" at path: \"{new_path}\" was created!\n"
+              f"Check Your FILES!")
+    except FileExistsError:
+        print(f"Directory Path Error: {new_path} already exists")
+    else:
+        return new_path
 
 def generate_labs_bar_chart(student_grades, header_line, uin, save_path):
     """
@@ -352,17 +426,30 @@ def generate_labs_bar_chart(student_grades, header_line, uin, save_path):
 
     Parameter3: uin is the current student's UIN
 
-    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+    Parameter4: save_path is for the chart to be saved at the newly created directory
+
+    Return1: The PNG with the Lab Chart Grades Shown
+
+    Exception1: FileExistError may occur at runtime because the Lab Chart may potentially exist if program
+                was ran before and the student was already selected for charts
 
     """
     lab_scores = student_grades[0:6]
     each_lab = header_line[1:7]
-    plt.figure(1)
-    plt.bar(each_lab, lab_scores, color="red", width=.5)
-    plt.xlabel("Lab Assignments")
-    plt.ylabel("Score")
-    plt.title(f"Grades for Lab Assignments for the student with UIN: {uin}")
-    plt.savefig(save_path + f"/{uin}_Lab_Bar_Chart.png")
+    try:
+        plt.figure(1)
+        plt.title(f"Grades for Lab Assignments for the student with UIN: {uin}")
+        plt.xlabel("Lab Assignments")
+        plt.ylabel("Score")
+        lab_bar_chart = plt.bar(each_lab, lab_scores, color="red", width=.5)
+        path = save_path + f"/{uin}_Lab_Bar_Chart.png"
+        plt.savefig(path)
+    except FileExistsError:
+        print(f"File error: {uin}_Lab_Bar_Chart.png already exists")
+    except TypeError:
+        print(f"File already found for {uin}_Lab_Bar_Chart.png")
+    else:
+        return lab_bar_chart
 
 def generate_exams_bar_chart(student_grades, header_line, uin, save_path):
     """
@@ -375,17 +462,29 @@ def generate_exams_bar_chart(student_grades, header_line, uin, save_path):
 
     Parameter3: uin is the current student's UIN
 
-    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+    Parameter4: save_path is for the chart to be saved at the newly created directory
+
+    Return1: The PNG with the Exam Bar Chart Grades Shown
+
+    Exception1: FileExistError may occur at runtime because the Exam Chart may potentially exist if program
+                was ran before and the student was already selected for charts
 
     """
-    exam_scores = student_grades[18:21]
-    each_exam = header_line[19:22]
-    plt.figure(2)
-    plt.bar(each_exam, exam_scores, color="red", width=.5)
-    plt.xlabel("Exam Number")
-    plt.ylabel("Score")
-    plt.title(f"Grades for Exams for Student with UIN: {uin}")
-    plt.savefig(save_path + f"/{uin}_Exam_Bar_Chart.png")
+    try:
+        exam_scores = student_grades[18:21]
+        each_exam = header_line[19:22]
+        plt.figure(2)
+        exam_bar_chart = plt.bar(each_exam, exam_scores, color="red", width=.5)
+        plt.xlabel("Exam Number")
+        plt.ylabel("Score")
+        plt.title(f"Grades for Exams for Student with UIN: {uin}")
+        plt.savefig(save_path + f"/{uin}_Exam_Bar_Chart.png")
+    except FileExistsError:
+        print(f"File error: {uin}_Lab_Bar_Chart.png already exists")
+    except TypeError:
+        print(f"File already found for {uin}_Exam_Bar_Chart.png")
+    else:
+        return exam_bar_chart
 
 def generate_readings_bar_chart(student_grades, header_line, uin, save_path):
     """
@@ -398,17 +497,29 @@ def generate_readings_bar_chart(student_grades, header_line, uin, save_path):
 
     Parameter3: uin is the current student's UIN
 
-    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+    Parameter4: save_path is for the chart to be saved at the newly created directory
+
+    Return1: The PNG with the Reading Bar Chart Grades Shown
+
+    Exception1: FileExistError may occur at runtime because the Reading Chart may potentially exist if program
+                was ran before and the student was already selected for charts
 
     """
-    reading_scores = student_grades[12:18]
-    each_reading = header_line[13:19]
-    plt.figure(3)
-    plt.bar(each_reading, reading_scores, color="red", width=.5)
-    plt.xlabel("Reading Assignment")
-    plt.ylabel("Score")
-    plt.title(f"Grades for Reading Assignments for Student with UIN: {uin}")
-    plt.savefig(save_path + f"/{uin}_Readings_Bar_Chart.png")
+    try:
+        reading_scores = student_grades[12:18]
+        each_reading = header_line[13:19]
+        plt.figure(3)
+        reading_bar_chart = plt.bar(each_reading, reading_scores, color="red", width=.5)
+        plt.xlabel("Reading Assignment")
+        plt.ylabel("Score")
+        plt.title(f"Grades for Reading Assignments for Student with UIN: {uin}")
+        plt.savefig(save_path + f"/{uin}_Readings_Bar_Chart.png")
+    except FileExistsError:
+        print(f"File error: {uin}_Readings_Bar_Chart.png already exists")
+    except TypeError:
+        print(f"File already found for {uin}_Readings_Bar_Chart.png")
+    else:
+        return reading_bar_chart
 
 def generate_quiz_bar_chart(student_grades, header_line, uin, save_path):
     """
@@ -421,17 +532,29 @@ def generate_quiz_bar_chart(student_grades, header_line, uin, save_path):
 
     Parameter3: uin is the current student's UIN
 
-    Parameter4: save_path is for the chart to be saved at the newly created directory, *******action needed******
+    Parameter4: save_path is for the chart to be saved at the newly created directory
+
+    Return1: The PNG with the Quiz Bar Chart Grades Shown
+
+    Exception1: FileExistError may occur at runtime because the Quiz Chart may potentially exist if program
+                was ran before and the student was already selected for charts
 
     """
-    quiz_scores = student_grades[6:12]
-    each_quiz = header_line[7:13]
-    plt.figure(4)
-    plt.bar(each_quiz, quiz_scores, color="red", width=.5)
-    plt.xlabel("Quiz Number")
-    plt.ylabel("Score")
-    plt.title(f"Grades for Quiz Assignments for Student with UIN: {uin}")
-    plt.savefig(save_path + f"/{uin}_Quiz_Bar_Chart.png")
+    try:
+        quiz_scores = student_grades[6:12]
+        each_quiz = header_line[7:13]
+        plt.figure(4)
+        quiz_bar_chart = plt.bar(each_quiz, quiz_scores, color="red", width=.5)
+        plt.xlabel("Quiz Number")
+        plt.ylabel("Score")
+        plt.title(f"Grades for Quiz Assignments for Student with UIN: {uin}")
+        plt.savefig(save_path + f"/{uin}_Quiz_Bar_Chart.png")
+    except FileExistsError:
+        print(f"file error: {uin}_Quiz_Bar_Chart.png already exists")
+    except TypeError:
+        print(f"File already found for {uin}_Quiz_Bar_Chart.png")
+    else:
+        return quiz_bar_chart
 
 """
 These Next 7 Functions are specifically for option 4 of the select_option() function
@@ -443,6 +566,8 @@ def generate_class_report(dict_of_grades):
     Option for instructor to get data about the entire class
 
     Parameter1: Dictionary that holds every student's uin and grades
+
+    Return1: The text document with the class statistics shown
 
     """
     total_students = len(list(dict_of_grades.keys()))
@@ -462,6 +587,7 @@ def generate_class_report(dict_of_grades):
                             )
     print(f"Class Report Generated!")
     print(f"Check files for the report!")
+    return class_report_file
 
 def find_all_student_scores(dict_of_grades):
     """
@@ -469,6 +595,9 @@ def find_all_student_scores(dict_of_grades):
     Function which calculates every student's weighted score
 
     Parameter1: Dictionary that holds all students UIN and respective grades
+
+    Return1: scores is a list of every student's weighted score in order of the grades.csv file
+        Ex: scores of a class [90.5, 67.6, 45.6, 82.4]
 
     """
     scores = []
@@ -484,6 +613,10 @@ def lowest_class_score(dict_of_grades):
     Function which finds the lowest weighted score for the report of the class
 
     Parameter1: Dictionary that holds all students uin and respective grades
+
+    Return1: lowest_score is the lowest score of the entire class
+        Ex: class scores of [90, 91, 46] would return 46
+
     """
     lowest_score = min(find_all_student_scores(dict_of_grades))
     return lowest_score
@@ -494,6 +627,9 @@ def highest_class_score(dict_of_grades):
     Function which finds the highest weighted score for the report of the class
 
     Parameter1: Dictionary that holds all students uin and respective grades
+
+    Return1: highest_score is the highest score of the entire class
+        Ex: class scores of [90, 91, 46] would return 91
 
     """
     highest_score = max(find_all_student_scores(dict_of_grades))
@@ -510,6 +646,12 @@ def normal_rounding(number, decimal_places):
 
     Parameter2: decimal_places How many decimal places you want to round
 
+    Return Option1: The number will be rounded up if last digit is greater than 5
+        Ex: 38.55 will round up to 38.6 if 1 decimal place is specified
+
+    Return Option2: The number will be rounded down if the last digit is less than 5
+        Ex: 38.54 will round down to 38.5 if 1 decimal place is specified
+
     """
     exponent = number * 10 ** decimal_places
     if abs(exponent) - abs(math.floor(exponent)) < .5:
@@ -524,6 +666,8 @@ def class_median_score(dict_of_grades):
 
     Parameter1: dictionary of grades that holds UIN and grades
 
+    Return1: median is the median of the data set of scores which is just the middle of the data set
+        Ex: [10, 5, 12] has a median of 10
     """
     median = normal_rounding(stat.median(find_all_student_scores(dict_of_grades)), 1)
     return median
@@ -533,8 +677,10 @@ def class_average_score(dict_of_grades):
 
     Function which finds the average of the class
 
-    parameter1: Dictionary of UINs and respective grades
+    Parameter1: Dictionary of UINs and respective grades
 
+    Return1: class_average is the average of all the scores of the class
+        Ex: [80, 85, 90, 100] averages to about 88.8
     """
     class_average = round((sum(find_all_student_scores(dict_of_grades)) / len(find_all_student_scores(dict_of_grades))), 1)
     return class_average
@@ -545,6 +691,9 @@ def class_standard_dev(dict_of_grades):
     Function that finds the standard deviation of the entire class's weighed scores
 
     Parameter1: Dictionary of {UINs:[Grades]}
+
+    Return1: standard_dev is the standard deviation of all the class scores
+        Ex: [98, 70, 45] has a standard deviation of about 26.51
 
     """
     grades = find_all_student_scores(dict_of_grades)
@@ -562,6 +711,8 @@ def generate_report_charts_for_class(dict_of_grades):
 
     Parameter1: dict_of_grades holds all student data {UIN:[grades]}
 
+    No return but generates the pie and bar chart of the grade distribution for the class
+
     """
     directory_name = "class_charts"
     created_directory = create_directory(directory_name)
@@ -578,6 +729,9 @@ def get_all_letter_grades(dict_of_grades):
 
     Parameter1: dict_of_grades holds all students UINs and their respective grades
 
+    Return1: letter_grades is a list of all the letter grades for every student in the class
+        Ex: letter_grades = ['A', 'B', 'A', 'C', 'F'...]
+
     """
     letter_grades = []
     for key in dict_of_grades:
@@ -592,6 +746,10 @@ def letter_grade_distribution(list_of_letter_grades):
 
     Parameter1: list_of_letter_grades is just a list that holds every student's letter grade in order of UIN in
     "grades.csv" file
+
+    Return1: letter_distribution is a dictionary of every possible letter grade and the number of occurances as the
+    value associated with that letter grade
+        Ex: {'A':12, 'B':24, 'C':6...'F':13}
 
     """
     letter_distribution = {}
@@ -613,18 +771,25 @@ def generate_class_letter_grades_pie_chart(dict_of_letter_occurances, save_path)
     Parameter1: dict_of_letter_occurances holds each letter grade as a key and the number of times the grade shows up
     as the value
 
+    Return1: The PNG with the class pie grade distribution shown
+
+    Exception1: TypeError may occur if the file already exists for the class distribution pie
+
     """
-    data = dict_of_letter_occurances.values()
-    grade_distribution_labels = dict_of_letter_occurances.keys()
-    plt.figure(5)
-    plt.pie(data, labels=grade_distribution_labels, autopct='%1.1f%%')
-    plt.title("Class Letter Grade Distribution")
-    plt.axis("equal")
-    plt.savefig(save_path + f"/Class_Letter_Distribution_Pie_Chart.png")
-
-    print("Class Letter Grade Distribution Pie Chart Generated!")
-    print("Check your files!")
-
+    try:
+        data = dict_of_letter_occurances.values()
+        grade_distribution_labels = dict_of_letter_occurances.keys()
+        plt.figure(5)
+        class_pie = plt.pie(data, labels=grade_distribution_labels, autopct='%1.1f%%')
+        plt.title("Class Letter Grade Distribution")
+        plt.axis("equal")
+        plt.savefig(save_path + f"/Class_Letter_Distribution_Pie_Chart.png")
+    except TypeError:
+        print(f"File \"Class_Letter_Distribution_Pie_Chart.png\" already exists")
+    else:
+        print("Class Letter Grade Distribution Pie Chart Generated!")
+        print("Check your files!")
+        return class_pie
 
 def generate_class_letter_grades_bar_chart(dict_of_letter_occurances, save_path):
     """
@@ -633,23 +798,39 @@ def generate_class_letter_grades_bar_chart(dict_of_letter_occurances, save_path)
 
     Parameter1: dict_of_letter_occurances holds each letter grade as a key and the number of times the grade shows up
     as a value
+
+    Return1: The PNG with the class letter grade distribution shown
+
+    Exception1: TypeError may occur if the file already exists for the class distribution bar chart
+
     """
-    data = dict_of_letter_occurances.values()
-    labels = dict_of_letter_occurances.keys()
-    plt.figure(6)
-    plt.bar(labels, data, color="red", width=.5)
-    plt.xlabel("Letter Grades")
-    plt.ylabel("Distribution")
-    plt.title("Distribution of Letter Grades")
-    plt.savefig(save_path + "/Class_Letter_Grade_Distribution_Bar_Chart.png")
-    print("Class Letter Grade Distribution Bar Chart Generated!")
-    print("Check Your Files!")
+    try:
+        data = dict_of_letter_occurances.values()
+        labels = dict_of_letter_occurances.keys()
+        plt.figure(6)
+        class_bar_chart = plt.bar(labels, data, color="red", width=.5)
+        plt.xlabel("Letter Grades")
+        plt.ylabel("Distribution")
+        plt.title("Distribution of Letter Grades")
+        plt.savefig(save_path + "/Class_Letter_Grade_Distribution_Bar_Chart.png")
+    except TypeError:
+        print(f"File \"Class_Letter_Grade_Distribution_Bar_Chart.png\" already exists")
+    else:
+        print("Class Letter Grade Distribution Bar Chart Generated!")
+        print("Check Your Files!")
+        return class_bar_chart
 
 """
 Main Driver Function
 """
 def main():
-    """Driver Function that calls all other functions"""
+    """
+    Driver Function that calls all other functions
+
+    No return but will perform all functions
+
+    """
+
     select_option()
 
 main()
